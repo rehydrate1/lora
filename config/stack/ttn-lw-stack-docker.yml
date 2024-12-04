@@ -1,0 +1,51 @@
+# Identity Server configuration
+is:
+  oauth:
+    ui:
+      canonical-url: "http://localhost:1885/oauth"
+      is:
+        base-url: "http://localhost:1885/api/v3"
+
+# TLS configuration
+tls:
+  source: "file"
+  root-ca: "/srv/ttn-lorawan/cert/ca.pem"
+  certificate: "/srv/ttn-lorawan/cert/cert.pem"
+  key: "/srv/ttn-lorawan/cert/key.pem"
+
+# HTTP server configuration
+http:
+  listen: "0.0.0.0:1885"
+  cookie:
+    block-key: "c8f5f3d484b5292617c709b9259e97944b7b35c9b285f289c4fc6c77dbc03719"
+    hash-key: "3bd4022d8bde6c873002b0eed92cb0f96c42d18e2dc15432f5adacd2d5d734184c04452b7366738c7debc9f5ab21cf4f8d573346ea7014954616e5a8190b991a"
+
+console:
+  ui:
+    canonical-url: "http://localhost:1885/console"
+    account-url: "http://localhost:1885/oauth"
+    is:
+      base-url: "http://localhost:1885/api/v3"
+    gs:
+      base-url: "http://localhost:1885/api/v3"
+    ns:
+      base-url: "http://localhost:1885/api/v3"
+    as:
+      base-url: "http://localhost:1885/api/v3"
+    js:
+      base-url: "http://localhost:1885/api/v3"
+
+# Gateway Server configuration
+gs:
+  mqtt:
+    listen: ":1881"
+    public-address: "localhost:1881"
+  mqtt-v2:
+    listen: ":1882"
+    public-address: "localhost:1882"
+
+# Application Server configuration
+as:
+  mqtt:
+    listen: ":1883"
+    public-address: "localhost:1883"
