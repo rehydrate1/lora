@@ -27,7 +27,7 @@ services:
   stack:
     # In production, replace 'latest' with tag from https://hub.docker.com/r/thethingsnetwork/lorawan-stack/tags
     image: thethingsnetwork/lorawan-stack:latest
-    entrypoint: ttn-lw-stack -c /config/ttn-lw-stack-docker.yml
+    entrypoint: ttn-lw-stack -c /config/stack/ttn-lw-stack-docker.yml
     command: start
     restart: unless-stopped
     depends_on:
@@ -35,7 +35,9 @@ services:
       - postgres
     volumes:
       - ./blob:/srv/ttn-lorawan/public/blob
-      - ./config/stack:/config:ro
+      - ./config:/config:ro
+      # If using Let's Encrypt:
+      - ./acme:/var/lib/acme
       - ./config/cert:/srv/ttn-lorawan/cert:ro
     environment:
       TTN_LW_BLOB_LOCAL_DIRECTORY: /srv/ttn-lorawan/public/blob
